@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Calculator</title>
+</head>
+<body>
+
+    <h2>Date Calculator</h2>
+
+    <label for="inputDate">Input Date:</label>
+    <input type="date" id="inputDate" value="2024-01-01"><br><br>
+
+    <label for="selectType">Select Type:</label>
+    <select id="selectType">
+        <option value="days">Days</option>
+        <option value="weeks">Weeks</option>
+    </select><br><br>
+
+    <label for="inputNumber">Input Number:</label>
+    <input type="number" id="inputNumber" value="1"><br><br>
+
+    <button onclick="calculateDate()">Calculate</button><br><br>
+
+    <div id="result"></div>
+
+    <script>
+function calculateDate() {
+    var inputDate = new Date(document.getElementById('inputDate').value);
+    var selectType = document.getElementById('selectType').value;
+    var inputNumber = parseInt(document.getElementById('inputNumber').value);
+
+    var resultDate = new Date(inputDate);
+
+    if (selectType === 'weeks') {
+        resultDate.setDate(resultDate.getDate() + (inputNumber * 7));
+    } else {
+        resultDate.setDate(resultDate.getDate() + inputNumber);
+    }
+
+    var formattedResult = resultDate.getFullYear() + '-' + ('0' + (resultDate.getMonth() + 1)).slice(-2) + '-' + ('0' + resultDate.getDate()).slice(-2);
+
+    document.getElementById('result').innerText = 'Result Date: ' + formattedResult;
+}
+    </script>
+
+</body>
+</html>
